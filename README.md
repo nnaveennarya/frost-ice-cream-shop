@@ -16,6 +16,20 @@ Frost manages inventory and customer records for an ice cream shop. It includes 
 | Manager | Yes | Yes | Yes | No | Yes | No |
 | Cashier | Yes | No | Yes | No | Yes | No |
 
+## Demo package login accounts
+
+Start `START-FROST.ps1` in the supplied Windows demonstration package, wait for the desktop app to open, choose Sign in, and enter one of these accounts in the browser:
+
+| Role | Login email | Password |
+| --- | --- | --- |
+| Owner | `owner@icecream.test` | Provided separately with the demo package |
+| Manager | `manager@icecream.test` | Provided separately with the demo package |
+| Cashier | `cashier@icecream.test` | Provided separately with the demo package |
+
+Request the private demo login details from the project owner. Copy the supplied password exactly, including its final `=`, without surrounding spaces or backticks. Use these accounts only with the local demonstration database.
+
+A fresh database created from source uses the passwords you supply in `.local/user-credentials.json` during setup below. Cloning this repository does not install the private demonstration database or its account passwords.
+
 ## Source layout
 
 - `backend/`: Laravel application, migrations, seeders, and configuration templates.
