@@ -1,0 +1,166 @@
+erDiagram
+    categories ||--o{ items : "category_id - RESTRICT delete"
+    users |o--o{ audit_events : "actor_user_id - SET NULL delete"
+    users |o..o{ sessions : "logical user_id"
+    users ||..o{ oauth_auth_codes : "logical user_id"
+    users |o..o{ oauth_access_tokens : "logical user_id"
+    oauth_clients ||..o{ oauth_auth_codes : "logical client_id"
+    oauth_clients ||..o{ oauth_access_tokens : "logical client_id"
+    oauth_access_tokens ||..o{ oauth_refresh_tokens : "logical access_token_id"
+    users |o..o{ oauth_device_codes : "logical user_id"
+    oauth_clients ||..o{ oauth_device_codes : "logical client_id"
+    audit_events {
+        bigint_unsigned id PK "required"
+        bigint_unsigned actor_user_id FK "nullable"
+        varchar_20_ action "required"
+        varchar_30_ entity_type "required"
+        bigint_unsigned entity_id "required"
+        char_36_ request_id "required"
+        json changed_fields "required"
+        timestamp created_at "required"
+    }
+    cache {
+        varchar_255_ key PK "required"
+        mediumtext value "required"
+        bigint expiration "required"
+    }
+    cache_locks {
+        varchar_255_ key PK "required"
+        varchar_255_ owner "required"
+        bigint expiration "required"
+    }
+    categories {
+        bigint_unsigned id PK "required"
+        varchar_80_ name UK "required"
+        timestamp created_at "nullable"
+        timestamp updated_at "nullable"
+    }
+    customers {
+        bigint_unsigned id PK "required"
+        varchar_120_ name "required"
+        varchar_254_ email "nullable"
+        varchar_32_ phone "nullable"
+        int_unsigned version "required"
+        timestamp created_at "nullable"
+        timestamp updated_at "nullable"
+    }
+    failed_jobs {
+        bigint_unsigned id PK "required"
+        varchar_255_ uuid UK "required"
+        varchar_255_ connection "required"
+        varchar_255_ queue "required"
+        longtext payload "required"
+        longtext exception "required"
+        timestamp failed_at "required"
+    }
+    items {
+        bigint_unsigned id PK "required"
+        varchar_120_ name "required"
+        varchar_1000_ description "nullable"
+        bigint_unsigned category_id FK "required"
+        decimal_10_2_ price "required"
+        int_unsigned quantity "required"
+        int_unsigned version "required"
+        timestamp created_at "nullable"
+        timestamp updated_at "nullable"
+    }
+    job_batches {
+        varchar_255_ id PK "required"
+        varchar_255_ name "required"
+        int total_jobs "required"
+        int pending_jobs "required"
+        int failed_jobs "required"
+        longtext failed_job_ids "required"
+        mediumtext options "nullable"
+        int cancelled_at "nullable"
+        int created_at "required"
+        int finished_at "nullable"
+    }
+    jobs {
+        bigint_unsigned id PK "required"
+        varchar_255_ queue "required"
+        longtext payload "required"
+        smallint_unsigned attempts "required"
+        int_unsigned reserved_at "nullable"
+        int_unsigned available_at "required"
+        int_unsigned created_at "required"
+    }
+    migrations {
+        int_unsigned id PK "required"
+        varchar_255_ migration "required"
+        int batch "required"
+    }
+    oauth_access_tokens {
+        char_80_ id PK "required"
+        bigint_unsigned user_id "nullable"
+        char_36_ client_id "required"
+        varchar_255_ name "nullable"
+        text scopes "nullable"
+        tinyint_1_ revoked "required"
+        timestamp created_at "nullable"
+        timestamp updated_at "nullable"
+        datetime expires_at "nullable"
+    }
+    oauth_auth_codes {
+        char_80_ id PK "required"
+        bigint_unsigned user_id "required"
+        char_36_ client_id "required"
+        text scopes "nullable"
+        tinyint_1_ revoked "required"
+        datetime expires_at "nullable"
+    }
+    oauth_clients {
+        char_36_ id PK "required"
+        varchar_255_ owner_type "nullable"
+        bigint_unsigned owner_id "nullable"
+        varchar_255_ name "required"
+        varchar_255_ secret "nullable"
+        varchar_255_ provider "nullable"
+        text redirect_uris "required"
+        text grant_types "required"
+        tinyint_1_ revoked "required"
+        timestamp created_at "nullable"
+        timestamp updated_at "nullable"
+    }
+    oauth_device_codes {
+        char_80_ id PK "required"
+        bigint_unsigned user_id "nullable"
+        char_36_ client_id "required"
+        char_8_ user_code UK "required"
+        text scopes "required"
+        tinyint_1_ revoked "required"
+        datetime user_approved_at "nullable"
+        datetime last_polled_at "nullable"
+        datetime expires_at "nullable"
+    }
+    oauth_refresh_tokens {
+        char_80_ id PK "required"
+        char_80_ access_token_id "required"
+        tinyint_1_ revoked "required"
+        datetime expires_at "nullable"
+    }
+    password_reset_tokens {
+        varchar_255_ email PK "required"
+        varchar_255_ token "required"
+        timestamp created_at "nullable"
+    }
+    sessions {
+        varchar_255_ id PK "required"
+        bigint_unsigned user_id "nullable"
+        varchar_45_ ip_address "nullable"
+        text user_agent "nullable"
+        longtext payload "required"
+        int last_activity "required"
+    }
+    users {
+        bigint_unsigned id PK "required"
+        varchar_100_ name "required"
+        varchar_254_ email UK "required"
+        enum__owner___manager___cashier__ role "required"
+        tinyint_1_ is_active "required"
+        timestamp email_verified_at "nullable"
+        varchar_255_ password "required"
+        varchar_100_ remember_token "nullable"
+        timestamp created_at "nullable"
+        timestamp updated_at "nullable"
+    }

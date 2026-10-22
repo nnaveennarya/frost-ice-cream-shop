@@ -138,4 +138,4 @@ Authentication starts at `/oauth/authorize`, exchanges codes at `/oauth/token`, 
 
 This source repository was prepared from the supplied Windows demonstration package. That package did not include the backend tests or the desktop test/tool projects referenced by its original solution. The solution here includes only the supplied desktop application. Automated test coverage is an outstanding assessment requirement; no passing test results are claimed.
 
-The Postman collection, ER diagram, and Google Drive demo video are separate submission deliverables and are not yet included here. A new source import does not reproduce the project's earlier development commit history.
+The [Postman collection and instructions](docs/postman/README.md) and [ER diagram and editable schema](docs/database/README.md) are included in `docs/`. The Google Drive demo video is a separate submission deliverable. A new source import does not reproduce the project's earlier development commit history.
