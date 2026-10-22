@@ -2,6 +2,21 @@
 
 Frost manages inventory and customer records for an ice cream shop. It includes a Laravel API backed by MySQL and a C# WPF desktop client for Windows.
 
+## Project demo and submission files
+
+**[Watch the desktop demo (68 seconds)](https://github.com/nnaveennarya/frost-ice-cream-shop/raw/refs/heads/main/docs/demo/Frost-desktop-demo.mp4)** · [Video file](docs/demo/Frost-desktop-demo.mp4)
+
+| Review material | Open or download |
+| --- | --- |
+| Desktop walkthrough | [Watch / download MP4](docs/demo/Frost-desktop-demo.mp4) |
+| Postman collection | [Collection JSON](docs/postman/Frost.postman_collection.json) · [Environment JSON](docs/postman/Frost.local.postman_environment.json) · [Import and sign-in guide](docs/postman/README.md) |
+| ER diagram | [View diagram](docs/database/Frost-shop-ER.png) · [Download editable diagrams.net file](docs/database/Frost-ER.drawio) |
+| Full database schema | [Editable Mermaid source](docs/database/Frost-full-schema.mmd) · [Diagram guide](docs/database/README.md) |
+| Demo account emails | [Login instructions](#demo-package-login-accounts) |
+| Run from source | [Backend setup](#1-create-a-local-database) · [WPF setup](#3-configure-and-run-the-wpf-client) |
+
+The walkthrough shows inventory and customer operations, role permissions, validation, and sign-out using synthetic demonstration records. Click the video link to open the recording; if your browser downloads it, open the MP4 in a video player. For the editable ER diagram, download the `.drawio` file and open it in [diagrams.net](https://app.diagrams.net).
+
 ## Features
 
 - Inventory and customer CRUD APIs, with inventory search.
@@ -152,4 +167,4 @@ Authentication starts at `/oauth/authorize`, exchanges codes at `/oauth/token`, 
 
 This source repository was prepared from the supplied Windows demonstration package. That package did not include the backend tests or the desktop test/tool projects referenced by its original solution. The solution here includes only the supplied desktop application. Automated test coverage is an outstanding assessment requirement; no passing test results are claimed.
 
-The [Postman collection and instructions](docs/postman/README.md) and [ER diagram and editable schema](docs/database/README.md) are included in `docs/`. The Google Drive demo video is a separate submission deliverable. A new source import does not reproduce the project's earlier development commit history.
+The [Postman collection and instructions](docs/postman/README.md) and [ER diagram and editable schema](docs/database/README.md) are included in `docs/`. The desktop walkthrough is included in `docs/demo/`. A Google Drive copy is required separately for the emailed assessment submission. A new source import does not reproduce the project's earlier development commit history.
