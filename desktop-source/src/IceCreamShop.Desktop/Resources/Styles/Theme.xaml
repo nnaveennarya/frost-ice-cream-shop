@@ -1,0 +1,47 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:IceCreamShop.Desktop.Services.Presentation">
+    <SolidColorBrush x:Key="Ink" Color="#173734" />
+    <SolidColorBrush x:Key="Accent" Color="#176A60" />
+    <SolidColorBrush x:Key="Muted" Color="#526760" />
+    <SolidColorBrush x:Key="Line" Color="#D8E2DC" />
+    <SolidColorBrush x:Key="Paper" Color="#F3F6F2" />
+    <BooleanToVisibilityConverter x:Key="BoolVisibility" />
+    <local:InverseBooleanConverter x:Key="InverseBool" />
+    <Style TargetType="Window">
+        <Setter Property="FontFamily" Value="Segoe UI" /><Setter Property="FontSize" Value="14" />
+        <Setter Property="Foreground" Value="{StaticResource Ink}" /><Setter Property="Background" Value="{StaticResource Paper}" />
+    </Style>
+    <Style TargetType="TextBlock"><Setter Property="TextWrapping" Value="Wrap" /></Style>
+    <Style TargetType="Label"><Setter Property="Foreground" Value="{StaticResource Ink}" /><Setter Property="Padding" Value="0,12,0,5" /><Setter Property="FontWeight" Value="SemiBold" /></Style>
+    <Style TargetType="TextBox">
+        <Setter Property="Padding" Value="10,8" /><Setter Property="MinHeight" Value="38" /><Setter Property="BorderBrush" Value="{StaticResource Line}" />
+        <Setter Property="BorderThickness" Value="1" /><Setter Property="VerticalContentAlignment" Value="Center" /><Setter Property="Background" Value="White" />
+    </Style>
+    <Style TargetType="ComboBox"><Setter Property="Padding" Value="8" /><Setter Property="MinHeight" Value="38" /><Setter Property="HorizontalContentAlignment" Value="Stretch" /></Style>
+    <Style TargetType="Button">
+        <Setter Property="Padding" Value="14,9" /><Setter Property="MinHeight" Value="38" /><Setter Property="Background" Value="White" />
+        <Setter Property="BorderBrush" Value="{StaticResource Line}" /><Setter Property="BorderThickness" Value="1" /><Setter Property="Foreground" Value="{StaticResource Ink}" /><Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="Button">
+            <Border x:Name="Chrome" CornerRadius="6" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}">
+                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True" />
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="Chrome" Property="Opacity" Value="0.85" /></Trigger>
+                <Trigger Property="IsEnabled" Value="False"><Setter TargetName="Chrome" Property="Opacity" Value="0.45" /></Trigger>
+                <Trigger Property="IsKeyboardFocused" Value="True"><Setter TargetName="Chrome" Property="BorderBrush" Value="#2C487E" /><Setter TargetName="Chrome" Property="BorderThickness" Value="2" /></Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate></Setter.Value></Setter>
+    </Style>
+    <Style x:Key="PrimaryButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}"><Setter Property="Background" Value="{StaticResource Accent}" /><Setter Property="Foreground" Value="White" /><Setter Property="BorderBrush" Value="{StaticResource Accent}" /></Style>
+    <Style x:Key="DangerButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}"><Setter Property="Foreground" Value="#9C2929" /><Setter Property="BorderBrush" Value="#DDBBBB" /></Style>
+    <Style x:Key="Card" TargetType="Border"><Setter Property="Background" Value="White" /><Setter Property="BorderBrush" Value="{StaticResource Line}" /><Setter Property="BorderThickness" Value="1" /><Setter Property="CornerRadius" Value="12" /><Setter Property="Padding" Value="20" /></Style>
+    <Style x:Key="FieldError" TargetType="TextBlock"><Setter Property="Foreground" Value="#A02D2D" /><Setter Property="FontSize" Value="12" /><Setter Property="Margin" Value="0,4,0,0" /><Setter Property="Tag" Value="field-error" /><Style.Triggers><Trigger Property="Text" Value=""><Setter Property="Visibility" Value="Collapsed" /></Trigger></Style.Triggers></Style>
+    <Style x:Key="CellText" TargetType="TextBlock"><Setter Property="Margin" Value="8,0" /><Setter Property="VerticalAlignment" Value="Center" /><Setter Property="TextWrapping" Value="NoWrap" /><Setter Property="TextTrimming" Value="CharacterEllipsis" /><Setter Property="ToolTip" Value="{Binding Text, RelativeSource={RelativeSource Self}}" /></Style>
+    <Style TargetType="DataGrid">
+        <Setter Property="Background" Value="White" /><Setter Property="BorderThickness" Value="0" /><Setter Property="RowBackground" Value="White" /><Setter Property="AlternatingRowBackground" Value="#F5F8F5" />
+        <Setter Property="RowHeight" Value="44" /><Setter Property="HeadersVisibility" Value="Column" /><Setter Property="GridLinesVisibility" Value="Horizontal" /><Setter Property="HorizontalGridLinesBrush" Value="#ECF0EB" />
+        <Setter Property="AutoGenerateColumns" Value="False" /><Setter Property="CanUserAddRows" Value="False" /><Setter Property="CanUserDeleteRows" Value="False" /><Setter Property="CanUserSortColumns" Value="False" />
+        <Setter Property="IsReadOnly" Value="True" /><Setter Property="SelectionMode" Value="Single" /><Setter Property="SelectionUnit" Value="FullRow" /><Setter Property="EnableRowVirtualization" Value="True" />
+    </Style>
+    <Style TargetType="DataGridColumnHeader"><Setter Property="Background" Value="#EDF3EE" /><Setter Property="Foreground" Value="#36574F" /><Setter Property="FontWeight" Value="SemiBold" /><Setter Property="Padding" Value="10,12" /><Setter Property="BorderThickness" Value="0" /></Style>
+    <Style TargetType="DataGridCell"><Setter Property="Padding" Value="8,5" /><Setter Property="BorderThickness" Value="0" /><Setter Property="VerticalContentAlignment" Value="Center" /></Style>
+</ResourceDictionary>

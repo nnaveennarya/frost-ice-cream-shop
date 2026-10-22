@@ -1,0 +1,51 @@
+<Window x:Class="IceCreamShop.Desktop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:IceCreamShop.Desktop.ViewModels"
+        xmlns:views="clr-namespace:IceCreamShop.Desktop.Views"
+        Title="Frost · Shop workspace" Width="1280" Height="800" MinWidth="600" MinHeight="420" WindowStartupLocation="CenterScreen" FontFamily="Segoe UI" FontSize="14" Foreground="{StaticResource Ink}">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vm:InventoryViewModel}"><views:InventoryView /></DataTemplate>
+        <DataTemplate DataType="{x:Type vm:CustomersViewModel}"><views:CustomersView /></DataTemplate>
+    </Window.Resources>
+    <Grid Background="{StaticResource Paper}">
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <Grid Width="{Binding RelativeSource={RelativeSource AncestorType=ScrollViewer}, Path=ViewportWidth}" Height="{Binding RelativeSource={RelativeSource AncestorType=ScrollViewer}, Path=ViewportHeight}" MinWidth="940" MinHeight="580" Visibility="{Binding IsSignedIn, Converter={StaticResource BoolVisibility}}">
+                <Grid.ColumnDefinitions><ColumnDefinition Width="192" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                <Border Background="#173D35" Padding="22,28">
+                    <DockPanel LastChildFill="False">
+                        <StackPanel DockPanel.Dock="Top">
+                            <TextBlock Text="frost" FontSize="36" FontWeight="Bold" Foreground="White" />
+                            <TextBlock Text="SHOP WORKSPACE" FontSize="10" Foreground="#BBD2C5" Margin="1,2,0,36" />
+                            <Button Content="_Inventory" Command="{Binding ShowInventoryCommand}" Margin="0,0,0,10" />
+                            <Button Content="_Customers" Command="{Binding ShowCustomersCommand}" />
+                            <TextBlock Text="Simple records.&#x0a;A smoother day." Foreground="#BBD2C5" Margin="0,30,0,0" FontSize="13" />
+                        </StackPanel>
+                        <StackPanel DockPanel.Dock="Bottom">
+                            <TextBlock Text="{Binding UserLabel}" Foreground="White" FontSize="12" Margin="0,0,0,14" />
+                            <Button Content="Sign _out" Command="{Binding SignOutCommand}" />
+                        </StackPanel>
+                    </DockPanel>
+                </Border>
+                <ContentControl Grid.Column="1" Margin="28,24" Content="{Binding CurrentPage}" />
+            </Grid>
+        </ScrollViewer>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <ScrollViewer.Style><Style TargetType="ScrollViewer"><Setter Property="Visibility" Value="Visible" /><Style.Triggers><DataTrigger Binding="{Binding IsSignedIn}" Value="True"><Setter Property="Visibility" Value="Collapsed" /></DataTrigger></Style.Triggers></Style></ScrollViewer.Style>
+            <Grid Margin="36" MinHeight="510">
+                <Border Style="{StaticResource Card}" MaxWidth="500" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="40">
+                    <StackPanel>
+                        <TextBlock Text="frost" FontSize="50" FontWeight="Bold" Foreground="{StaticResource Accent}" />
+                        <TextBlock Text="Your shop, neatly in order." FontSize="25" FontWeight="SemiBold" Margin="0,14,0,12" />
+                        <TextBlock Text="Manage flavors, stock, and customer records in one calm workspace. Your role keeps every action in the right hands." Foreground="{StaticResource Muted}" LineHeight="24" />
+                        <Border Background="#EDF4EF" CornerRadius="8" Padding="16" Margin="0,26,0,22"><TextBlock Text="Secure sign-in opens in your browser. Your password stays with the authorization server." Foreground="#36574F" LineHeight="22" /></Border>
+                        <Button Content="_Sign in securely" Style="{StaticResource PrimaryButton}" Command="{Binding SignInCommand}" />
+                        <Button Content="Cancel sign-in" Command="{Binding CancelSignInCommand}" Margin="0,10,0,0" Visibility="{Binding IsSigningIn, Converter={StaticResource BoolVisibility}}" />
+                        <TextBlock Text="{Binding Status}" Foreground="{StaticResource Muted}" Margin="0,18,0,0" LineHeight="21" AutomationProperties.LiveSetting="Polite" />
+                        <TextBlock Text="Inventory · Customers · Role-based access" FontSize="11" Foreground="{StaticResource Muted}" Margin="0,26,0,0" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Window>

@@ -1,0 +1,37 @@
+# Local secrets and configuration
+.env
+.env.*
+!.env.example
+!.env.testing.example
+.local/
+.runtime/
+appsettings.local.json
+*.key
+*.pem
+*.pfx
+*.p12
+
+# Dependencies and generated output
+vendor/
+node_modules/
+bin/
+obj/
+.vs/
+.idea/
+.vscode/
+TestResults/
+coverage/
+.phpunit.cache/
+.phpunit.result.cache
+
+# Private database snapshots and runtime packages
+*.sql
+*.sqlite
+*.sqlite3
+*.db
+*.log
+*.zip
+runtime/
+Frost-win-x64/
+database/current-database.sql
+user-credentials.json
